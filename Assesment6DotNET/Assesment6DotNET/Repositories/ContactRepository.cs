@@ -31,7 +31,9 @@ namespace Assesment6DotNET.Repositories
 
         public Task<IEnumerable<Contact>> GetAllContacts()
         {
-            throw new NotImplementedException();
+            var db = dbConnection();
+            var sql = "SELECT * FROM contacts";
+            return db.QueryAsync<Contact>(sql, new { });
         }
 
         public Task<Contact> GetContactById(int id)
