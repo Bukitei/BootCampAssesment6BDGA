@@ -3,6 +3,7 @@ using Assesment6DotNET.MySQL;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using Assesment6DotNET.Models;
+using System.Text;
 
 namespace TestingAssesment6
 {
@@ -22,6 +23,11 @@ namespace TestingAssesment6
             var result = contactRepository.GetAllContacts();
             Assert.IsTrue(result.IsCompletedSuccessfully);
             Console.WriteLine(result.Result.Cast<Contact>().ElementAt(0).GetDetails());
+
+            //Esto es el encoding para el login
+            var messageBytes = Encoding.UTF8.GetBytes("password");
+
+            Console.WriteLine(Convert.ToBase64String(messageBytes));
         }
     }
 }

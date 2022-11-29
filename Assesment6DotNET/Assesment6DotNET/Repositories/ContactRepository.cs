@@ -21,7 +21,14 @@ namespace Assesment6DotNET.Repositories
         }
         public Task<Contact> AddContact(Contact contact)
         {
-            throw new NotImplementedException();
+            /*var db = dbConnection();
+            var sql = @"INSERT INTO contact (name, surname, details, isClient) VALUES (@Name, @Surname, @Details, @IsClient);";
+            return db.ExecuteAsync(sql, new {
+                Name = contact.,
+                Surname = contact.Surname,
+                Details = contact.Details,
+                IsClient = contact.IsClient
+            });*/
         }
 
         public Task<Contact> DeleteContact(int id)

@@ -3,11 +3,11 @@
     public class Contact
     {
         int id { get; set; }
-        DateTime date { get; set; }
-        bool isAction { get; set; }
-        Type type { get; set; }
-        string details { get; set; }
-        Oportunity oportunity { get; set; }
+        public DateTime date { get; set; }
+        public bool isAction { get; set; }
+        public Type type { get; set; }
+        public string details { get; set; }
+        public Oportunity oportunity { get; set; }
 
         public string GetDetails()
         {
