@@ -230,11 +230,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\BorjaDavid.Gomez\\source\\repos\\Assesment6DotNET\\Assesment6DotNET\\Assesment6DotNET.csproj",
+      "projectUniqueName": "C:\\Users\\BorjaDavid.Gomez\\source\\repos\\Assesment6\\Assesment6DotNET\\Assesment6DotNET\\Assesment6DotNET.csproj",
       "projectName": "Assesment6DotNET",
-      "projectPath": "C:\\Users\\BorjaDavid.Gomez\\source\\repos\\Assesment6DotNET\\Assesment6DotNET\\Assesment6DotNET.csproj",
+      "projectPath": "C:\\Users\\BorjaDavid.Gomez\\source\\repos\\Assesment6\\Assesment6DotNET\\Assesment6DotNET\\Assesment6DotNET.csproj",
       "packagesPath": "C:\\Users\\BorjaDavid.Gomez\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\BorjaDavid.Gomez\\source\\repos\\Assesment6DotNET\\Assesment6DotNET\\obj\\",
+      "outputPath": "C:\\Users\\BorjaDavid.Gomez\\source\\repos\\Assesment6\\Assesment6DotNET\\Assesment6DotNET\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
