@@ -2,8 +2,7 @@
 {
     public class Type
     {
-        int id;
-        string type;
-        string data;
+        int idType { get; set; }
+        string typeName { get; set; }
     }
 }

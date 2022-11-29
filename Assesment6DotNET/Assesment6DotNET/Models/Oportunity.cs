@@ -9,16 +9,5 @@
         string details { get; set; }
         bool isClient { get; set; }
 
-        public Oportunity(int id, Contact contact, string name, string surName, string details, bool isClient)
-        {
-            this.id = id;
-            this.contact = contact;
-            this.name = name;
-            this.surName = surName;
-            this.details = details;
-            this.isClient = isClient;
-        }
-
-
     }
 }

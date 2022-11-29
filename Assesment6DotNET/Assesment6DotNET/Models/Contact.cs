@@ -2,10 +2,16 @@
 {
     public class Contact
     {
-        int id;
-        DateTime date;
-        bool isAction;
-        Type type;
-        string details;
+        int id { get; set; }
+        DateTime date { get; set; }
+        bool isAction { get; set; }
+        Type type { get; set; }
+        string details { get; set; }
+        Oportunity oportunity { get; set; }
+
+        public string GetDetails()
+        {
+            return this.details;
+        }
     }
 }
