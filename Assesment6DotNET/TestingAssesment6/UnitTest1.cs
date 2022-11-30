@@ -13,21 +13,25 @@ namespace TestingAssesment6
         [SetUp]
         public void Setup()
         {
-            connectionString = "Server=localhost;port=3306;database=assesment6db;uid=Badmin;password=R@ydr@g0n2";
+            connectionString = "Server=localhost;port=3306;database=assesment6db;uid=Badmin;password=P@ssword123";
         }
         //Testing that we can connect to the database and extract a data from contact.
         [Test]
-        public void TestConnection()
+        public void TestGetAllContacts()
         {
             ContactRepository contactRepository = new ContactRepository(new MySQLConfiguration(connectionString));
             var result = contactRepository.GetAllContacts();
             Assert.IsTrue(result.IsCompletedSuccessfully);
             Console.WriteLine(result.Result.Cast<Contact>().ElementAt(0).GetDetails());
+        }
 
-            //Esto es el encoding para el login
-            var messageBytes = Encoding.UTF8.GetBytes("password");
-
-            Console.WriteLine(Convert.ToBase64String(messageBytes));
+        [Test]
+        public void TestGetContactById()
+        {
+            ContactRepository contactRepository = new ContactRepository(new MySQLConfiguration(connectionString));
+            var result = contactRepository.GetContactById(1);
+            Assert.IsTrue(result.IsCompletedSuccessfully);
+            Console.WriteLine(result.Result.GetDetails());
         }
     }
 }

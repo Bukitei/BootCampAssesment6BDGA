@@ -29,11 +29,14 @@ namespace Assesment6DotNET.Repositories
                 Details = contact.Details,
                 IsClient = contact.IsClient
             });*/
+            return null;
         }
 
         public Task<Contact> DeleteContact(int id)
         {
-            throw new NotImplementedException();
+            var db = dbConnection();
+            var sql = "SELECT * FROM contacts";
+            return db.QueryAsync<Contact>(sql, new { });
         }
 
         public Task<IEnumerable<Contact>> GetAllContacts()
@@ -45,7 +48,10 @@ namespace Assesment6DotNET.Repositories
 
         public Task<Contact> GetContactById(int id)
         {
-            throw new NotImplementedException();
+            /*var db = dbConnection();
+            var sql = "SELECT * FROM contacts where id = @Id";
+            return db.QueryFirstOrDefaultAsync<Contact>(sql, new { Id = id });*/
+            return null;
         }
 
         public Task<Contact> UpdateContact(Contact contact)
