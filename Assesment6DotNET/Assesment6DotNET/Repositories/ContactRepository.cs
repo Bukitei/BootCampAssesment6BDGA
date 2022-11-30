@@ -9,16 +9,19 @@ namespace Assesment6DotNET.Repositories
     public class ContactRepository : IContactRepository
     {
         private readonly MySQLConfiguration _connectionString;
+        //Stablish the initial configuration of the connection with the database.
         public ContactRepository(MySQLConfiguration mySQLConfiguration)
         {
             _connectionString = mySQLConfiguration;
         }
         
-
+        //Stablish the connection with the database when the app is up.
         protected MySqlConnection dbConnection()
         {
             return new MySqlConnection(_connectionString.ConnectionString);
         }
+
+        //Add a new contact into the database
         public Task<Contact> AddContact(Contact contact)
         {
             /*var db = dbConnection();
@@ -32,6 +35,7 @@ namespace Assesment6DotNET.Repositories
             return null;
         }
 
+        //Here we try to delete a contact
         public Task<Contact> DeleteContact(int id)
         {
             var db = dbConnection();
@@ -39,6 +43,7 @@ namespace Assesment6DotNET.Repositories
             return null;
         }
 
+        //Here we try to get all the contacts from the database
         public Task<IEnumerable<Contact>> GetAllContacts()
         {
             var db = dbConnection();
@@ -46,6 +51,7 @@ namespace Assesment6DotNET.Repositories
             return db.QueryAsync<Contact>(sql, new { });
         }
 
+        //Here we try to get a contact by its id
         public Task<Contact> GetContactById(int id)
         {
             var db = dbConnection();
@@ -53,11 +59,12 @@ namespace Assesment6DotNET.Repositories
             return db.QueryFirstOrDefaultAsync<Contact>(sql, new { Id = id });
         }
 
+        //Here we try to update a contact
         public Task<Contact> UpdateContact(Contact contact)
         {
             var db = dbConnection();
-            var sql = "SELECT * FROM contacts where idcontacts = @Id";
-            return db.QueryFirstOrDefaultAsync<Contact>(sql, new { Id = id });
+            var sql = "UPDATE contacts SET idOportunity = @Oportunity, date = @Date, isAction = @isAction, details = @Details, idTypes = @IdTypes WHERE idcontacts = @Id";
+            return db.QueryFirstOrDefaultAsync<Contact>(sql, new { Id = contact.id, Oportunity = contact.oportunity.id, Date = contact.date, isAction = contact.isAction, Details = contact.details, IdTypes = contact.type.idType });
         }
     }
 }

@@ -2,8 +2,8 @@
 {
     public class TypeData
     {
-        int idType { get; set; }
-        string typeName { get; set; }
+        public int idType { get; set; }
+        public string typeName { get; set; }
 
         public TypeData(int idType)
         {

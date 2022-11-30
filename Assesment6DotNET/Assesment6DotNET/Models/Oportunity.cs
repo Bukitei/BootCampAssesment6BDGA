@@ -2,11 +2,11 @@
 {
     public class Oportunity
     {
-        int id { get; set; }
-        string name { get; set; }
-        string surName { get; set; }
-        string details { get; set; }
-        bool isClient { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public string surName { get; set; }
+        public string details { get; set; }
+        public bool isClient { get; set; }
 
 
         public Oportunity(string name, string surName, string details, bool isClient)

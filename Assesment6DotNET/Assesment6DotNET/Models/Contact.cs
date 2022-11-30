@@ -2,7 +2,7 @@
 {
     public class Contact
     {
-        int id { get; set; }
+        public int id { get; set; }
         public DateTime date { get; set; }
         public bool isAction { get; set; }
         public TypeData type { get; set; }
@@ -26,7 +26,30 @@
             this.details = details;
             this.oportunity = new Oportunity(oportunityId);
         }
+
+        public Contact(int id, DateTime date, bool isAction, int typeId, string details, Oportunity oportunity)
         {
+            this.id = id;
+            this.date = date;
+            this.isAction = isAction;
+            this.type = new TypeData(typeId);
+            this.details = details;
+            this.oportunity = oportunity;
+        }
+
+        public Contact(int id, int idOportunity, DateTime date, bool isAction, string details, int idTypes)
+        {
+            this.id = id;
+            this.oportunity = new Oportunity(idOportunity);
+            this.date = date;
+            this.isAction = isAction;
+            this.details = details;
+            this.type = new TypeData(idTypes);
+        }
+
+        public Contact()
+        {
+            
         }
     }
 }
