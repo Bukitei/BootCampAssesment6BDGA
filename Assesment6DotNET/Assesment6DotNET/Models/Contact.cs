@@ -5,22 +5,28 @@
         int id { get; set; }
         public DateTime date { get; set; }
         public bool isAction { get; set; }
-        public int idType { get; set; }
-        public string nameType { get; set; }
+        public TypeData type { get; set; }
         public string details { get; set; }
-        public int idOportunity { get; set; }
-        public string nameOportunity { get; set; }
-        public string surnameOportunity { get; set; }
-        public string detailOportunity { get; set; }
-        public bool isClient { get; set; }
+        public Oportunity oportunity { get; set; }
 
-        public Contact(DateTime date, bool isAction, int idType, string details, int idOportunity)
+        public Contact(DateTime date, bool isAction, TypeData type, string details, Oportunity oportunity)
         {
             this.date = date;
             this.isAction = isAction;
-            this.idType = idType;
+            this.type = type;
             this.details = details;
-            this.idOportunity = idOportunity;
+            this.oportunity = oportunity;
+        }
+
+        public Contact(DateTime date, bool isAction, int typeId, string details, int oportunityId)
+        {
+            this.date = date;
+            this.isAction = isAction;
+            this.type = new TypeData(typeId);
+            this.details = details;
+            this.oportunity = new Oportunity(oportunityId);
+        }
+        {
         }
     }
 }

@@ -55,7 +55,9 @@ namespace Assesment6DotNET.Repositories
 
         public Task<Contact> UpdateContact(Contact contact)
         {
-            throw new NotImplementedException();
+            var db = dbConnection();
+            var sql = "SELECT * FROM contacts where idcontacts = @Id";
+            return db.QueryFirstOrDefaultAsync<Contact>(sql, new { Id = id });
         }
     }
 }
