@@ -36,7 +36,7 @@ namespace Assesment6DotNET.Repositories
         {
             var db = dbConnection();
             var sql = "SELECT * FROM contacts";
-            return db.QueryAsync<Contact>(sql, new { });
+            return null;
         }
 
         public Task<IEnumerable<Contact>> GetAllContacts()
@@ -48,10 +48,9 @@ namespace Assesment6DotNET.Repositories
 
         public Task<Contact> GetContactById(int id)
         {
-            /*var db = dbConnection();
-            var sql = "SELECT * FROM contacts where id = @Id";
-            return db.QueryFirstOrDefaultAsync<Contact>(sql, new { Id = id });*/
-            return null;
+            var db = dbConnection();
+            var sql = "SELECT * FROM contacts where idcontacts = @Id";
+            return db.QueryFirstOrDefaultAsync<Contact>(sql, new { Id = id });
         }
 
         public Task<Contact> UpdateContact(Contact contact)

@@ -22,16 +22,16 @@ namespace TestingAssesment6
             ContactRepository contactRepository = new ContactRepository(new MySQLConfiguration(connectionString));
             var result = contactRepository.GetAllContacts();
             Assert.IsTrue(result.IsCompletedSuccessfully);
-            Console.WriteLine(result.Result.Cast<Contact>().ElementAt(0).GetDetails());
+            Console.WriteLine(result.Result.Count());
         }
 
         [Test]
         public void TestGetContactById()
         {
             ContactRepository contactRepository = new ContactRepository(new MySQLConfiguration(connectionString));
-            var result = contactRepository.GetContactById(1);
+            var result = contactRepository.GetContactById(2);
             Assert.IsTrue(result.IsCompletedSuccessfully);
-            Console.WriteLine(result.Result.GetDetails());
+            Console.WriteLine(result.Result.details);
         }
     }
 }
