@@ -29,9 +29,19 @@ namespace TestingAssesment6
         public void TestGetContactById()
         {
             ContactRepository contactRepository = new ContactRepository(new MySQLConfiguration(connectionString));
-            var result = contactRepository.GetContactById(2);
+            var result = contactRepository.GetContactById(1);
             Assert.IsTrue(result.IsCompletedSuccessfully);
             Console.WriteLine(result.Result.details);
+            Console.WriteLine(Convert.ToDateTime("2022-01-02"));
+        }
+        [Test]
+        public void TestAddContact()
+        {
+            ContactRepository contactRepository = new ContactRepository(new MySQLConfiguration(connectionString));
+            Contact contact = new Contact(Convert.ToDateTime("2022-01-02"), false, 1, "contacto de prueba desde .net", 1);
+            var result = contactRepository.AddContact(contact);
+            Assert.IsTrue(result.IsCompletedSuccessfully);
+            Console.WriteLine(result.Result);
         }
     }
 }
