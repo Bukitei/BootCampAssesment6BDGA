@@ -25,5 +25,13 @@ namespace TestingAssesment6
             Assert.IsTrue(result.IsCompletedSuccessfully);
             Console.WriteLine(result.Result.Count());
         }
+
+        [Test]
+        public void TestGetTheLastInsertedOportunity(){
+            OportunityRepository oportunityRepository = new OportunityRepository(new MySQLConfiguration(connectionString));
+            var result = oportunityRepository.GetLastInsertedOportunity();
+            Assert.IsTrue(result.IsCompletedSuccessfully);
+            Console.WriteLine(result.Result.id);
+        }
     }
 }

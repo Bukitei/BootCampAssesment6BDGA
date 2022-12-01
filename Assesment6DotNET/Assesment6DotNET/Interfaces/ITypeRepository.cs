@@ -4,10 +4,11 @@ namespace Assesment6DotNET.Interfaces
 {
     public interface ITypeRepository
     {
-        Task<IEnumerable<Oportunity>> GetAllTypes();
+        Task<IEnumerable<TypeData>> GetAllTypes();
         Task<Oportunity> GetTypesById(int id);
-        Task<Oportunity> AddTypes(TypeData type);
-        Task<Oportunity> UpdateTypes(TypeData type);
-        Task<Oportunity> DeleteTypes(int id);
+        Task<TypeData> AddTypes(TypeData type);
+        Task<TypeData> UpdateTypes(TypeData type);
+        Task<TypeData> DeleteTypes(int id);
+        Task<Oportunity> GetLastInsertedType();
     }
 }

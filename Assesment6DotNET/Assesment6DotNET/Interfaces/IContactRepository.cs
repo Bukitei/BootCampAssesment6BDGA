@@ -9,5 +9,6 @@ namespace Assesment6DotNET.Interfaces
         Task<Contact> AddContact(Contact contact);
         Task<Contact> UpdateContact(Contact contact);
         Task<Contact> DeleteContact(int id);
+        Task<Contact> GetLastInsertedContact();
     }
 }

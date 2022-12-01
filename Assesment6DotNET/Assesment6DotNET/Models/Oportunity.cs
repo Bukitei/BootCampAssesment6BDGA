@@ -9,9 +9,9 @@
         public bool? isClient { get; set; }
 
 
-        public Oportunity(int id, string name, string surName, string details, bool isClient)
+        public Oportunity(int idOportunity, string name, string surName, string details, bool isClient)
         {
-            this.id = id;
+            this.id = idOportunity;
             this.name = name;
             this.surName = surName;
             this.details = details;

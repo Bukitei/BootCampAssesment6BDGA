@@ -29,9 +29,9 @@ namespace TestingAssesment6
         public void TestGetContactById()
         {
             ContactRepository contactRepository = new ContactRepository(new MySQLConfiguration(connectionString));
-            var result = contactRepository.GetContactById(2);
+            var result = contactRepository.GetContactById(5);
             Assert.IsTrue(result.IsCompletedSuccessfully);
-            Console.WriteLine(result.Result.details);
+            Console.WriteLine(result.Result.id);
         }
         //Test the AddContact that is in the ContactRepository class
         [Test]
@@ -68,7 +68,7 @@ namespace TestingAssesment6
         public void TestAddContact_With_Type_And_Oportunity()
         {
             ContactRepository contactRepository = new ContactRepository(new MySQLConfiguration(connectionString));
-            Contact contact = new Contact(Convert.ToDateTime("2022-01-02"), false, new TypeData("pruebanet2"), "contacto de prueba desde .net", new Oportunity("Carla", "Rodriguez", "Una random de ejemplo", false));
+            Contact contact = new Contact(Convert.ToDateTime("2022-01-02"), false, new TypeData("pruebanet3"), "contacto de prueba desde .net", new Oportunity("Carlota", "Rodriguez", "Una random de ejemplo", false));
             var result = contactRepository.AddContact(contact);
             Assert.IsTrue(result.IsCompletedSuccessfully);
             Console.WriteLine(result.Result);

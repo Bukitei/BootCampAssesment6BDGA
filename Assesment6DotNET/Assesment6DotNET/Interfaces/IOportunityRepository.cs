@@ -9,5 +9,6 @@ namespace Assesment6DotNET.Interfaces
         Task<Oportunity> AddOportunity(Oportunity oportunity);
         Task<Oportunity> UpdateOportunity(Oportunity oportunity);
         Task<Oportunity> DeleteOportunity(int id);
+        Task<Oportunity> GetLastInsertedOportunity();
     }
 }

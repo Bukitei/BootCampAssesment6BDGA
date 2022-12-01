@@ -1,4 +1,5 @@
-﻿using Assesment6DotNET.Interfaces;
+﻿using System.Reflection.Metadata.Ecma335;
+using Assesment6DotNET.Interfaces;
 using Assesment6DotNET.Models;
 using Assesment6DotNET.MySQL;
 using Dapper;
@@ -19,31 +20,71 @@ namespace Assesment6DotNET.Repositories
         {
             return new MySqlConnection(_connectionString.ConnectionString);
         }
-        public Task<Oportunity> AddTypes(TypeData type)
+        public Task<TypeData> AddTypes(TypeData type)
         {
-            throw new NotImplementedException();
+            var db = dbConnection();
+            var sql = @"INSERT INTO types (types_names) VALUES (@Name);";
+            return db.QueryFirstOrDefaultAsync<TypeData>(sql, new { Name = type.typeName });
         }
 
-        public Task<Oportunity> DeleteTypes(int id)
+        public Task<TypeData> DeleteTypes(int id)
         {
-            throw new NotImplementedException();
+            var db = dbConnection();
+            if (TypeExist(id))
+            {
+                string sql = @"DELETE FROM oportunity WHERE idOportunity = @Id;";
+                return db.QueryFirstOrDefaultAsync<TypeData>(sql, new { Id = id });
+
+            }
+            else
+            {
+                return null;
+            }
         }
 
-        public Task<IEnumerable<Oportunity>> GetAllTypes()
+        private bool TypeExist(int id)
+        {
+            var db = dbConnection();
+            var sql = @"SELECT * FROM types WHERE idtypes = @Id;";
+            var type = db.QueryFirstOrDefaultAsync<TypeData>(sql,
+                            new { Id = id }).Result;
+            if (type != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public Task<IEnumerable<TypeData>> GetAllTypes()
         {
             var db = dbConnection();
             string sql = @"SELECT * FROM types;";
-            return db.QueryAsync<Oportunity>(sql, new { });
+            return db.QueryAsync<TypeData>(sql, new { });
         }
 
-        public Task<Oportunity> GetTypesById(int id)
+        public Task<TypeData> GetTypesById(int id)
         {
-            throw new NotImplementedException();
+            var db = dbConnection();
+            var sql = "SELECT * FROM types where idtypes = @Id";
+            return db.QueryFirstOrDefaultAsync<TypeData>(sql, new { Id = id });
         }
 
-        public Task<Oportunity> UpdateTypes(TypeData type)
+        public Task<TypeData> UpdateTypes(TypeData type)
         {
-            throw new NotImplementedException();
+            var db = dbConnection();
+            var sql = @"UPDATE types SET typesname = @Name WHERE idtypes = @Id;";
+            return db.QueryFirstOrDefaultAsync<TypeData>(sql, 
+                new { Name = type.typeName, Id = type.idType });
+        }
+
+        public Task<TypeData> GetLastInsertedType()
+        {
+            var db = dbConnection();
+            var sql = "SELECT * FROM types ORDER BY idtypes DESC LIMIT 1";
+            return db.QueryFirstOrDefaultAsync<TypeData>(sql, new { });
         }
     }
 }

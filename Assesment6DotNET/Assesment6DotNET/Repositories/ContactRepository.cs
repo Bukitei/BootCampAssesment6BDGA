@@ -11,11 +11,13 @@ namespace Assesment6DotNET.Repositories
     {
         private readonly MySQLConfiguration _connectionString;
         private readonly OportunityRepository opRepository;
+        private readonly TypeRepository typeRepository;
         //Stablish the initial configuration of the connection with the database.
         public ContactRepository(MySQLConfiguration mySQLConfiguration)
         {
             _connectionString = mySQLConfiguration;
             opRepository = new OportunityRepository(mySQLConfiguration);
+            typeRepository = new TypeRepository(mySQLConfiguration);
         }
         
         //Stablish the connection with the database when the app is up.
@@ -32,16 +34,16 @@ namespace Assesment6DotNET.Repositories
             //Obtain the id of the new type if it don't exist.
             if (contact.type.idType == null)
             {
-                sql = @"INSERT INTO types (types_names) VALUES (@Name);
-                        SELECT LAST_INSERT_ID();";
-                int id = db.QueryFirstOrDefaultAsync<int>(sql, new { Name = contact.type.typeName }).Result;
-                contact.type = new TypeData(id, contact.type.typeName);
+                typeRepository.AddTypes(contact.type);
+                contact.type = typeRepository.GetLastInsertedType().Result;
             }
             //Obtain the new oportunity if it doesn't exists previously.
             if(contact.oportunity.id == null)
             {
-                contact.oportunity = opRepository.AddOportunity(contact.oportunity).Result;
-                
+                opRepository.AddOportunity(contact.oportunity);
+                contact.oportunity = opRepository.GetLastInsertedOportunity().Result;
+
+
             }
             //Insert the new contact.
             sql = @"INSERT INTO contacts (idOportunity, date, isAction, details, idtypes) VALUES (@Oportunity, @Date, @IsAction, @Details, @IdTypes);";
@@ -93,7 +95,7 @@ namespace Assesment6DotNET.Repositories
             var sql = "SELECT * FROM contacts";
             return db.QueryAsync<Contact>(sql, new { });
         }
-
+        
         //Here we try to get a contact by its id
         public Task<Contact> GetContactById(int id)
         {
@@ -108,6 +110,13 @@ namespace Assesment6DotNET.Repositories
             var db = dbConnection();
             var sql = "UPDATE contacts SET idOportunity = @Oportunity, date = @Date, isAction = @isAction, details = @Details, idTypes = @IdTypes WHERE idcontacts = @Id";
             return db.QueryFirstOrDefaultAsync<Contact>(sql, new { Id = contact.id, Oportunity = contact.oportunity.id, Date = contact.date, isAction = contact.isAction, Details = contact.details, IdTypes = contact.type.idType });
+        }
+
+        public Task<Contact> GetLastInsertedContact()
+        {
+            var db = dbConnection();
+            var sql = "SELECT * FROM contacts ORDER BY idcontacts DESC LIMIT 1";
+            return db.QueryFirstOrDefaultAsync<Contact>(sql, new { });
         }
     }
 }
