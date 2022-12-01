@@ -56,12 +56,6 @@ namespace Assesment6DotNET.Repositories
             });
         }
 
-        //See if the contact already exists
-        private bool ContactExists(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         //Here we try to delete a contact
         public Task<Contact> DeleteContact(int id)
         {

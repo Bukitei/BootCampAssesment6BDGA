@@ -4,7 +4,6 @@
     {
         string username;
         string password;
-        string token;
 
         public User(string username, string password)
         {

@@ -84,5 +84,14 @@ namespace TestingAssesment6
             Assert.IsTrue(result.IsCompletedSuccessfully);
             Console.WriteLine(result.Result);
         }
+
+        //Test the function UpdateContact that is in the ContactRepository class.
+        [Test]
+        public void TestDeleteContact(){
+            ContactRepository contactRepository = new ContactRepository(new MySQLConfiguration(connectionString));
+            var result = contactRepository.DeleteContact(2);
+            Assert.IsTrue(result.IsCompletedSuccessfully);
+            Console.WriteLine(result.Result);
+        }
     }
 }
