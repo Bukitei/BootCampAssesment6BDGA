@@ -60,8 +60,31 @@ namespace Assesment6DotNET.Repositories
         public Task<Contact> DeleteContact(int id)
         {
             var db = dbConnection();
-            var sql = "SELECT * FROM contacts";
-            return null;
+            if (ContactExist(id))
+            {
+                string sql = @"DELETE FROM contacts WHERE idcontacts = @Id;";
+                return db.QueryFirstOrDefaultAsync<Contact>(sql, new { Id = id });
+
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        private bool ContactExist(int id)
+        {
+            var db = dbConnection();
+            var sql = @"SELECT * FROM contacts WHERE idcontacts = @Id;";
+            var contact = db.QueryFirstOrDefaultAsync<Contact>(sql, new { Id = id }).Result;
+            if (contact != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         //Here we try to get all the contacts from the database

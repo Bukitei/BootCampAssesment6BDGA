@@ -89,7 +89,7 @@ namespace TestingAssesment6
         [Test]
         public void TestDeleteContact(){
             ContactRepository contactRepository = new ContactRepository(new MySQLConfiguration(connectionString));
-            var result = contactRepository.DeleteContact(2);
+            var result = contactRepository.DeleteContact(3);
             Assert.IsTrue(result.IsCompletedSuccessfully);
             Console.WriteLine(result.Result);
         }
