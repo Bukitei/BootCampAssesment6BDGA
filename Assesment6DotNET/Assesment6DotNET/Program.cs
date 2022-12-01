@@ -4,6 +4,15 @@ using Assesment6DotNET.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("*");
+                      });
+});
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -17,7 +26,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton(new MySQLConfiguration(builder.Configuration.GetConnectionString("MySQLConnection")));
 
+builder.Services.AddScoped<IOportunityRepository, OportunityRepository>();
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
+builder.Services.AddScoped<ITypeRepository, TypeRepository>();
 
 var app = builder.Build();
 
