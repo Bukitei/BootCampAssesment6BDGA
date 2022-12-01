@@ -1,6 +1,7 @@
 ﻿using Assesment6DotNET.Interfaces;
 using Assesment6DotNET.Models;
 using Assesment6DotNET.MySQL;
+using Dapper;
 using MySql.Data.MySqlClient;
 
 namespace Assesment6DotNET.Repositories
@@ -30,7 +31,9 @@ namespace Assesment6DotNET.Repositories
 
         public Task<IEnumerable<Oportunity>> GetAllTypes()
         {
-            throw new NotImplementedException();
+            var db = dbConnection();
+            string sql = @"SELECT * FROM types;";
+            return db.QueryAsync<Oportunity>(sql, new { });
         }
 
         public Task<Oportunity> GetTypesById(int id)

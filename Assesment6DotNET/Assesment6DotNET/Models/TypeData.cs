@@ -19,6 +19,10 @@
             this.idType = idType;
             this.typeName = typeName;
         }
+        public TypeData()
+        {
+            
+        }
     }
 
 }
