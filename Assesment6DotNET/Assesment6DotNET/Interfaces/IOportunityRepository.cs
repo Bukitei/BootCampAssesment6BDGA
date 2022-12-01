@@ -2,7 +2,7 @@
 
 namespace Assesment6DotNET.Interfaces
 {
-    public interface OportunityInterface
+    public interface IOportunityRepository
     {
         Task<IEnumerable<Oportunity>> GetAllOportunities();
         Task<Oportunity> GetOportunitiesById(int id);
