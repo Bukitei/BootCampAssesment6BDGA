@@ -2,13 +2,21 @@
 {
     public class Oportunity
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string surName { get; set; }
-        public string details { get; set; }
-        public bool isClient { get; set; }
+        public int? id { get; set; }
+        public string? name { get; set; }
+        public string? surName { get; set; }
+        public string? details { get; set; }
+        public bool? isClient { get; set; }
 
 
+        public Oportunity(int id, string name, string surName, string details, bool isClient)
+        {
+            this.id = id;
+            this.name = name;
+            this.surName = surName;
+            this.details = details;
+            this.isClient = isClient;
+        }
         public Oportunity(string name, string surName, string details, bool isClient)
         {
             this.name = name;
@@ -18,7 +26,8 @@
         }
         public Oportunity(int id){
                 this.id = id;
-            }
+        }
+        
 
     }
 }

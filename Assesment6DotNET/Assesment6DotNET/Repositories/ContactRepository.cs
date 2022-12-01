@@ -1,4 +1,5 @@
-﻿using Assesment6DotNET.Interfaces;
+﻿using System.Xml.Linq;
+using Assesment6DotNET.Interfaces;
 using Assesment6DotNET.Models;
 using Assesment6DotNET.MySQL;
 using Dapper;
@@ -24,15 +25,41 @@ namespace Assesment6DotNET.Repositories
         //Add a new contact into the database
         public Task<Contact> AddContact(Contact contact)
         {
-            /*var db = dbConnection();
-            var sql = @"INSERT INTO contact (name, surname, details, isClient) VALUES (@Name, @Surname, @Details, @IsClient);";
-            return db.ExecuteAsync(sql, new {
-                Name = contact.,
-                Surname = contact.Surname,
-                Details = contact.Details,
-                IsClient = contact.IsClient
-            });*/
-            return null;
+            var db = dbConnection();
+            string sql;
+            //Obtain the id of the new type if it don't exist.
+            if (contact.type.idType == null)
+            {
+                sql = @"INSERT INTO types (types_names) VALUES (@Name);
+                        SELECT LAST_INSERT_ID();";
+                int id = db.QueryFirstOrDefaultAsync<int>(sql, new { Name = contact.type.typeName }).Result;
+                contact.type = new TypeData(id, contact.type.typeName);
+            }
+            //Obtain the id of the new oportunity if it don't exist.
+            if(contact.oportunity.id == null)
+            {
+
+                sql = @"INSERT INTO oportunity (name, surname, details, isClient) VALUES (@Name, @Surname, @Details, @IsClient);
+                        SELECT LAST_INSERT_ID();";
+                int id = db.QueryFirstOrDefaultAsync<int>(sql, new { Name = contact.oportunity.name, Surname = contact.oportunity.surName, Details = contact.oportunity.details, IsClient = contact.oportunity.isClient }).Result;
+                contact.oportunity = new Oportunity(id, contact.oportunity.name, contact.oportunity.surName, contact.oportunity.details, contact.oportunity.isClient ?? false);
+            }
+            //Insert the new contact.
+            sql = @"INSERT INTO contacts (idOportunity, date, isAction, details, idtypes) VALUES (@Oportunity, @Date, @IsAction, @Details, @IdTypes);";
+            return db.QueryFirstOrDefaultAsync<Contact>(sql, new
+            {
+                Oportunity = contact.oportunity.id,
+                Date = contact.date,
+                IsAction = contact.isAction,
+                Details = contact.details,
+                IdTypes = contact.type.idType
+            });
+        }
+
+        //See if the contact already exists
+        private bool ContactExists(int id)
+        {
+            throw new NotImplementedException();
         }
 
         //Here we try to delete a contact

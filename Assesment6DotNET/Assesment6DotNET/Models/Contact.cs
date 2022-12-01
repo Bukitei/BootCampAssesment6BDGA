@@ -2,12 +2,12 @@
 {
     public class Contact
     {
-        public int id { get; set; }
-        public DateTime date { get; set; }
-        public bool isAction { get; set; }
-        public TypeData type { get; set; }
-        public string details { get; set; }
-        public Oportunity oportunity { get; set; }
+        public int? id { get; set; }
+        public DateTime? date { get; set; }
+        public bool? isAction { get; set; }
+        public TypeData? type { get; set; }
+        public string? details { get; set; }
+        public Oportunity? oportunity { get; set; }
 
         public Contact(DateTime date, bool isAction, TypeData type, string details, Oportunity oportunity)
         {
@@ -25,6 +25,23 @@
             this.type = new TypeData(typeId);
             this.details = details;
             this.oportunity = new Oportunity(oportunityId);
+        }
+        public Contact(DateTime date, bool isAction, int typeId, string details, Oportunity oportunity)
+        {
+            this.date = date;
+            this.isAction = isAction;
+            this.type = new TypeData(typeId);
+            this.details = details;
+            this.oportunity = oportunity;
+        }
+
+        public Contact(DateTime date, bool isAction, TypeData type, string details, int idOportunity)
+        {
+            this.date = date;
+            this.isAction = isAction;
+            this.type = type;
+            this.details = details;
+            this.oportunity = new Oportunity(idOportunity);
         }
 
         public Contact(int id, DateTime date, bool isAction, int typeId, string details, Oportunity oportunity)

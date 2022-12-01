@@ -2,8 +2,8 @@
 {
     public class TypeData
     {
-        public int idType { get; set; }
-        public string typeName { get; set; }
+        public int? idType { get; set; }
+        public string? typeName { get; set; }
 
         public TypeData(int idType)
         {
@@ -11,6 +11,12 @@
         }
         public TypeData(string typeName)
         {
+            this.typeName = typeName;
+        }
+
+        public TypeData(int idType, string typeName)
+        {
+            this.idType = idType;
             this.typeName = typeName;
         }
     }
