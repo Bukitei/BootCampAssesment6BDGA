@@ -10,10 +10,12 @@ namespace Assesment6DotNET.Repositories
     public class ContactRepository : IContactRepository
     {
         private readonly MySQLConfiguration _connectionString;
+        private readonly OportunityRepository opRepository;
         //Stablish the initial configuration of the connection with the database.
         public ContactRepository(MySQLConfiguration mySQLConfiguration)
         {
             _connectionString = mySQLConfiguration;
+            opRepository = new OportunityRepository(mySQLConfiguration);
         }
         
         //Stablish the connection with the database when the app is up.
@@ -35,14 +37,11 @@ namespace Assesment6DotNET.Repositories
                 int id = db.QueryFirstOrDefaultAsync<int>(sql, new { Name = contact.type.typeName }).Result;
                 contact.type = new TypeData(id, contact.type.typeName);
             }
-            //Obtain the id of the new oportunity if it don't exist.
+            //Obtain the new oportunity if it doesn't exists previously.
             if(contact.oportunity.id == null)
             {
-
-                sql = @"INSERT INTO oportunity (name, surname, details, isClient) VALUES (@Name, @Surname, @Details, @IsClient);
-                        SELECT LAST_INSERT_ID();";
-                int id = db.QueryFirstOrDefaultAsync<int>(sql, new { Name = contact.oportunity.name, Surname = contact.oportunity.surName, Details = contact.oportunity.details, IsClient = contact.oportunity.isClient }).Result;
-                contact.oportunity = new Oportunity(id, contact.oportunity.name, contact.oportunity.surName, contact.oportunity.details, contact.oportunity.isClient ?? false);
+                contact.oportunity = opRepository.AddOportunity(contact.oportunity).Result;
+                
             }
             //Insert the new contact.
             sql = @"INSERT INTO contacts (idOportunity, date, isAction, details, idtypes) VALUES (@Oportunity, @Date, @IsAction, @Details, @IdTypes);";

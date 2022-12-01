@@ -6,8 +6,8 @@ namespace Assesment6DotNET.Interfaces
     {
         Task<IEnumerable<Oportunity>> GetAllOportunities();
         Task<Oportunity> GetOportunitiesById(int id);
-        Task<Oportunity> AddOportunity(Contact contact);
-        Task<Oportunity> UpdateOportunity(Contact contact);
+        Task<Oportunity> AddOportunity(Oportunity oportunity);
+        Task<Oportunity> UpdateOportunity(Oportunity oportunity);
         Task<Oportunity> DeleteOportunity(int id);
     }
 }
