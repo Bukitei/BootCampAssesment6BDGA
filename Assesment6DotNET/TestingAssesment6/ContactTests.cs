@@ -7,7 +7,7 @@ using System.Text;
 
 namespace TestingAssesment6
 {
-    public class Tests
+    public class ContactTests
     {
         String connectionString;
         [SetUp]
