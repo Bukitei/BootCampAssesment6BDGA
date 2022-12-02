@@ -2,12 +2,12 @@
 {
     public class Contact
     {
-        public int? id { get; set; }
-        public DateTime? date { get; set; }
-        public bool? isAction { get; set; }
-        public TypeData? type { get; set; }
-        public string? details { get; set; }
-        public Oportunity? oportunity { get; set; }
+        public int id { get; set; }
+        public DateTime date { get; set; }
+        public bool isAction { get; set; }
+        public TypeData type { get; set; }
+        public string details { get; set; }
+        public Oportunity oportunity { get; set; }
 
         public Contact(DateTime date, bool isAction, TypeData type, string details, Oportunity oportunity)
         {

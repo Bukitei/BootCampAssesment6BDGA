@@ -55,7 +55,7 @@ namespace Assesment6DotNET.Controllers
         [HttpPut]
         [Route("Contact")]
 
-        /*public async Task<IActionResult> UpdateContact([FromBody] Contact contact)
+        public async Task<IActionResult> UpdateContact([FromBody] Contact contact)
         {
             if (contact == null)
             {
@@ -203,7 +203,7 @@ namespace Assesment6DotNET.Controllers
             await _typeRepository.DeleteTypes(id);
 
             return NoContent();
-        }*/
+        }
 
     }
 }

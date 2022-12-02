@@ -34,7 +34,7 @@ namespace Assesment6DotNET.Repositories
         {
             var db = dbConnection();
             var sql = "SELECT * FROM oportunity where idOportunity = @Id";
-            return db.QueryFirstOrDefaultAsync<Oportunity>(sql, new { Id = id }).Result;
+            return db.QueryFirstOrDefaultAsync<Oportunity>(sql, new { Id = id });
         }
 
         //Add a new oportunity into the database
@@ -103,8 +103,7 @@ namespace Assesment6DotNET.Repositories
         {
             var db = dbConnection();
             var sql = @"SELECT idOportunity, name, surname, details, isClient FROM oportunity ORDER BY idOportunity DESC LIMIT 1";
-            Oportunity result = db.QueryFirstOrDefaultAsync<Oportunity>(sql, new { });
-            return result;
+            return db.QueryFirstOrDefaultAsync<Oportunity>(sql, new { });
         }
     }
 }

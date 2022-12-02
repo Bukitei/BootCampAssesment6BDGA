@@ -2,8 +2,8 @@
 {
     public class User
     {
-        string username;
-        string password;
+        public string username;
+        public string password;
 
         public User(string username, string password)
         {

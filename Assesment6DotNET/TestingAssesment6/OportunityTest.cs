@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Assesment6DotNET.MySQL;
+﻿using Assesment6DotNET.MySQL;
 using Assesment6DotNET.Repositories;
+using Assesment6DotNET.Models;
 
 namespace TestingAssesment6
 {
@@ -23,7 +19,10 @@ namespace TestingAssesment6
             OportunityRepository oportunityRepository = new OportunityRepository(new MySQLConfiguration(connectionString));
             var result = oportunityRepository.GetAllOportunities();
             Assert.IsTrue(result.IsCompletedSuccessfully);
-            Console.WriteLine(result.Result.Count());
+            for (int i = 0; i < result.Result.Count(); i++)
+            {
+                Console.WriteLine(result.Result.ElementAt(i).ToString());
+            }
         }
 
         [Test]
